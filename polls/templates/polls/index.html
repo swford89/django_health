@@ -1,12 +1,11 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1 class="display-1">POLLS APP!</h1>
+{% extends 'polls/base.html' %}
+
+{% block content %}
+    <h1>
+        Django Health
+        <br>
+        <small class="text-muted">Mental health with Python and the Django Web Framework</small>
+      </h1>
     
     {% if latest_question_list %}
 
@@ -19,6 +18,5 @@
     {% else %}
         <p>No questions available</p>
     {% endif %}
-        
-</body>
-</html>
+
+{% endblock content%}    
