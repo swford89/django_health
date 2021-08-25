@@ -1,22 +1,22 @@
 {% extends 'polls/base.html' %}
 
 {% block content %}
-    <h1>
-        Django Health
-        <br>
-        <small class="text-muted">Mental health with Python and the Django Web Framework</small>
-      </h1>
-    
-    {% if latest_question_list %}
+<h1>
+    Django Health
+    <br>
+    <small class="text-muted">Mental health with Python and the Django Web Framework</small>
+</h1>
 
-        <ul>
-        {% for question in latest_question_list %}
-            <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-        {% endfor %}
-        </ul>
+{% if latest_question_list %}
 
-    {% else %}
-        <p>No questions available</p>
-    {% endif %}
+<ul>
+    {% for question in latest_question_list %}
+    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+</ul>
 
-{% endblock content%}    
+{% else %}
+<p>No questions available</p>
+{% endif %}
+
+{% endblock content%}

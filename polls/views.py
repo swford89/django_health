@@ -1,7 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
-from polls.models import Question, Choice
+from django.utils import timezone
+from polls.models import Question, Choice, Mood
 
 # Create your views here.
 def index(request):
@@ -14,10 +15,13 @@ def detail(request, question_id):
     context = {'question': question}
     return render(request, 'polls/detail.html', context)
 
-def vote(request, question_id):
+def submit(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
+    user_mood = Mood(request.POST['mood_level'], request.POST['user_feedback'], timezone.now())
+    user_mood.save()
     try:
         # get submitted data from DB
+        print(request.POST)
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
         # redisplay detail page for invalid submissions
@@ -34,5 +38,10 @@ def vote(request, question_id):
 
 def results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    context = {'question': question}
+    user_mood = Mood.objects.latest('mood_date')
+    print(request.POST)
+    context = {
+        'question': question,
+        'user_mood': user_mood,
+        }
     return render(request, 'polls/results.html', context)

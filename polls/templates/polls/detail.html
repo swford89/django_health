@@ -2,21 +2,31 @@
 
 {% block content %}
 
-<h1>{{ question.question_text }}</h1>
+<h1>Question: {{ question.question_text }}</h1>
 
 {% if error_message %}
-    <p><strong>{{ error_message }}</strong></p> 
+<p><strong>{{ error_message }}</strong></p>
 {% endif %}
 
-<form action="{% url 'polls:vote' question.id %}" method="post">
-{% csrf_token %}
-{% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}"> 
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+<form action="{% url 'polls:submit' question.id %}" method="post">
+    {% csrf_token %}
+    <div>
+        {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+        <br>
+        {% endfor %}
+    </div>
+    <div>
+        <label for="customRange3" class="form-label">
+            <h2>Mood Scale: </h2>
+        </label>
+        <input type="range" name="mood_level" min="1" max="10" step="1">
+        <br>
+        <textarea name="user_feedback" placeholder="The reason for your above choice?" cols="70" rows="10"></textarea>
+    </div>
     <br>
-{% endfor %}
-<br>
-<input type="submit" value="Submit">
-</form>   
+    <input type="submit" value="Submit">
+</form>
 
 {% endblock content %}

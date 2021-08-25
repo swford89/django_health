@@ -20,3 +20,8 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+class Mood(models.Model):
+    mood_level = models.IntegerChoices('Positivity Rating', '1 2 3 4 5 6 7 8 9 10')
+    user_feedback = models.TextField()
+    mood_date = models.DateTimeField(auto_now_add=True)

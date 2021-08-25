@@ -4,14 +4,22 @@
 
 <body>
     <h1>{{ question.question_text }}</h1>
-    
+
     {% for choice in question.choice_set.all %}
 
-        <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-        
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+
     {% endfor %}
 
-<br>        
-<a href="{% url 'polls:index' %}">Back to the index page?</a>
+    <br>
+
+    <h1>Mood Reflecton:</h1>
+    <li>Mood Scale: {{ user_mood.mood_level }}</li>
+    <li>Date: {{ user_mood.mood_date }}</li>
+    <li>Feedback: {{ user_mood.user_feedback }}</li>
+
+    <br>
+    <a href="{% url 'polls:index' %}">Back to the index page?</a>
+</body>
 
 {% endblock content %}
