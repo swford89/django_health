@@ -1,17 +1,43 @@
 {% extends 'polls/base.html' %}
 
 {% block content %}
-<h1>
-    Django Health
-    <br>
-    <small class="text-muted">Mental health with Python and the Django Web Framework</small>
-</h1>
+<header class="top-bar">
+    <div id="top" role="banner">
+        <h1>PyDjango
+            <br>
+            <small class="text-muted">Programming with Python & Django</small>
+        </h1>
+
+        <div class="row">
+            <div class="col align-self-end">
+                <a href="https://docs.djangoproject.com/en/3.2/">Offical Django Docs</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col align-self-end">
+                <a href="https://docs.python.org/3/">Official Python Docs</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<br>
 
 {% if latest_question_list %}
 
 <ul>
     {% for question in latest_question_list %}
-    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ question.question_text }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ question.pub_date }}</h6>
+            <a href="{% url 'polls:detail' question.id %}">Link to question</a>
+        </div>
+    </div>
+    <br>
+
     {% endfor %}
 </ul>
 

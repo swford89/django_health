@@ -14,9 +14,9 @@
     <br>
 
     <h1>Mood Reflecton:</h1>
-    <li>Mood Scale: {{ user_mood.mood_level }}</li>
-    <li>Date: {{ user_mood.mood_date }}</li>
-    <li>Feedback: {{ user_mood.user_feedback }}</li>
+    <li><b>Mood Scale: </b>{{ user_mood.mood_level|rjust:>20 }}</li>
+    <li><b>Date: </b>{{ user_mood.mood_date }}</li>
+    <li><b>Feedback: </b>{{ user_mood.user_feedback }}</li>
 
     <br>
     <a href="{% url 'polls:index' %}">Back to the index page?</a>
