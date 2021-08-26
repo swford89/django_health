@@ -16,12 +16,12 @@ def detail(request, question_id):
     return render(request, 'polls/detail.html', context)
 
 def submit(request, question_id):
+    mood_level = int(request.POST['mood_level'])
     question = get_object_or_404(Question, pk=question_id)
-    user_mood = Mood(request.POST['mood_level'], request.POST['user_feedback'], timezone.now())
+    user_mood = Mood(mood_level=mood_level, user_feedback=request.POST['user_feedback'], mood_date=timezone.now())
     user_mood.save()
     try:
         # get submitted data from DB
-        print(request.POST)
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
         # redisplay detail page for invalid submissions
@@ -39,7 +39,7 @@ def submit(request, question_id):
 def results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     user_mood = Mood.objects.latest('mood_date')
-    print(request.POST)
+    print(user_mood.mood_level)
     context = {
         'question': question,
         'user_mood': user_mood,
