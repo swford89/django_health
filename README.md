@@ -1,2 +1,2 @@
-# Django Health: A Mental Heath Polling App
-With Python and the Django Web Framework
+# Django Learn: A learning log 
+A learning log for reviewing Python and the Django 
