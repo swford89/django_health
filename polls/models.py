@@ -3,7 +3,16 @@ from django.db import models
 from django.utils import timezone
 
 # Create your models here.
+class Post(models.Model):
+    post_title = models.CharField(max_length=150)
+    post = models.TextField()
+    pub_date = models.DateTimeField('date_published')
+
+    def post_published_recently(self):
+        return datetime.timedelta(days=1) <= self.pub_date <= timezone.now()
+
 class Question(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     question_text = models.CharField(max_length=150)
     pub_date = models.DateTimeField('date_published')
 
