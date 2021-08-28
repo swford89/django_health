@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'project_main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_polls',
+        'NAME': 'django_blog',
         'USER': 'postgres',
         'PASSWORD': os.environ['POSTGRES_PASS'],
         'HOST': '127.0.0.1',
