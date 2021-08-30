@@ -3,20 +3,30 @@
 {% block content %}
 
 <body>
-    <h1>{{ question.question_text }}</h1>
 
-    {% for choice in question.choice_set.all %}
+    <div class="card" style="width: 25rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ question.title }}</h6>
+          
+          {% for choice in question.choice_set.all %}
+              
+          <li class="card-text">{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
 
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-
-    {% endfor %}
+          {% endfor %}
+              
+          
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
 
     <br>
 
-    <h1>Mood Reflecton:</h1>
-    <li><b>Mood Scale: </b>{{ user_mood.mood_level|rjust:>20 }}</li>
-    <li><b>Date: </b>{{ user_mood.mood_date }}</li>
-    <li><b>Feedback: </b>{{ user_mood.user_feedback }}</li>
+    <h1>Submitted Feedback:</h1>
+    <li><b>Like Rating: </b>{{ user_info.like_rating }}</li>
+    <li><b>Date: </b>{{ user_info.feedback_date }}</li>
+    <li><b>Feedback: </b>{{ user_info.user_feedback }}</li>
 
     <br>
     <a href="{% url 'polls:index' %}">Back to the index page?</a>
