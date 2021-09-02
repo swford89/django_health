@@ -2,12 +2,14 @@
 
 {% block content %}
 
+{% load static  %}
+
 <div class="card mb-3">
-    <img src="..." class="card-img-top" alt="...">
+    <img src="{% static 'polls/codingnomads_logo.png' %}" class="card-img-top" style="width: 18rem;">
     <div class="card-body">
         <h5 class="card-title">{{ post.title }}</h5>
         <p class="card-text">{{ post.post }}</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <p class="card-text"><small class="text-muted">{{ post.pub_date }}</small></p>
     </div>
 </div>
 
