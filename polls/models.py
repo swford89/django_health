@@ -21,7 +21,7 @@ class Post(models.Model):
         return self.title
 
     def post_published_recently(self):
-        return datetime.timedelta(days=1) <= self.pub_date <= timezone.now()
+        return timezone.now() - datetime.timedelta(days=1) <= self.pub_date <= timezone.now()
 
 class Question(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -37,9 +37,6 @@ class Question(models.Model):
 
     def __str__(self):
         return self.title
-
-    def was_published_recently(self):
-        return datetime.timedelta(days=1) <= self.pub_date <= timezone.now()
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
