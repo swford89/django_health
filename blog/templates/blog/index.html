@@ -1,0 +1,56 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand">
+            <h3>Django Learn</h3>
+            <small class="text-muted">
+                <h4>Programming with Python & Django</h4>
+            </small>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="https://docs.python.org/3/">Python Docs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://docs.djangoproject.com/en/3.2/">Django Docs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://codingnomads.co/">CodingNomads</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<br>
+
+
+{% if latest_posts_list %}
+    
+<ul>
+    
+    {% for post in latest_posts_list %}
+        
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ post.pub_date }}</h6>
+            <p class="card-text">{{ post.post|truncatechars:30 }}</p>
+            <a href="{% url 'blog:detail' post.post_slug %}">Link to post</a>
+        </div>
+    </div>
+    <br>
+
+    {% endfor %}
+        
+</ul>
+
+{% endif %}
+
+{% endblock content%}
